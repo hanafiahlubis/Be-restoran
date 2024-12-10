@@ -5,16 +5,13 @@ import dotenv from 'dotenv';
 import cors from 'cors';
 dotenv.config();
 
-// Inisialisasi express app
 const app = express();
 const port = process.env.PORT ?? 3000;
 
-// Middleware untuk parse JSON request body
 app.use(express.json());
 app.use(cors());
 
-// Route untuk mendapatkan daftar user
-app.get('/foot', async (req, res) => {
+app.get('/foot', async (_req, res) => {
   try {
     const result = await pool.query('SELECT id,name,price,id_recipe,url FROM foot');
     res.json(result.rows);
@@ -25,17 +22,15 @@ app.get('/foot', async (req, res) => {
 });
 
 // Route untuk menambah user
-app.post('/foot', async (req, res) => {
-  const { name, email } = req.body;
+app.get('/foot/:id', async (req, res) => {
   try {
-    const result = await pool.query(
-      'INSERT INTO users(name, email) VALUES($1, $2) RETURNING *',
-      [name, email]
-    );
+    const result = await pool.query(`select f.name,f.price,f.url,p.materials from foot f
+inner join recipe p ON p.id = f.id_recipe
+where f.id = ${req.params.id}`);
     res.status(201).json(result.rows[0]);
   } catch (err) {
     console.error(err);
-    res.status(500).send('Error adding user');
+    res.status(500).send('Error adding foot');
   }
 });
 
