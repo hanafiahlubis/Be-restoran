@@ -38,13 +38,13 @@ Follow these steps to set up and run the project locally.
      npm install
 3. **Setup Environment Variables Create a .env file in the root directory and configure the following variables:**
     ```bash
-    HOST=your-database-host
-    USER=your-database-username
-    PASSWORD=your-database-password
-    DATABASE=your-database-name
-    PORT_DB=5432
-    POOL_MODE=transaction
-    PORT=3000
+    PORT = 3000
+    HOST = "aws-0-ap-southeast-1.pooler.supabase.com"
+    USER = "postgres.zlhxwielqfstxqcndwik"
+    PASSWORD =  "PhcgYPsaqLw8cjPH"
+    DATABASE= "postgres"
+    PORT_DB =  5432
+    POOL_MODE = "transaction"
 4. **Start the Server Start the server with the following command:**
     ```bash
     npm run dev
