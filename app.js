@@ -11,7 +11,7 @@ const port = process.env.PORT ?? 3000;
 app.use(express.json());
 app.use(cors());
 
-app.get('/foot', async (_req, res) => {
+app.get('/food', async (_req, res) => {
   try {
     const result = await pool.query('SELECT id,name,price,id_recipe,url FROM foot');
     res.json(result.rows);
@@ -22,7 +22,7 @@ app.get('/foot', async (_req, res) => {
 });
 
 // Route untuk menambah user
-app.get('/foot/:id', async (req, res) => {
+app.get('/food/:id', async (req, res) => {
   try {
     const result = await pool.query(`select f.name,f.price,f.url,p.materials from foot f
 inner join recipe p ON p.id = f.id_recipe
